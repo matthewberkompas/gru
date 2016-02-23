@@ -10,11 +10,17 @@ defmodule GRU do
 
     HTTPoison.start
 
+    port =
+      case System.get_env("PORT") do
+        nil   -> 4000
+        value -> String.to_integer(value)
+      end
+
     children = [
       # Define workers and child supervisors to be supervised
       # worker(Gru.Worker, [arg1, arg2, arg3]),
       supervisor(CrawlerSupervisor, []),
-      Plug.Adapters.Cowboy.child_spec(:http, GRU.Router, [], [port: 4400])
+      Plug.Adapters.Cowboy.child_spec(:http, GRU.Router, [], [port: port])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html

@@ -8,6 +8,10 @@ defmodule GRU.Router do
   plug :match
   plug :dispatch
 
+  get "/" do
+    send_resp(conn, 200, "I'm alive")
+  end
+
   post "/command" do
     response =
       conn.params["text"]

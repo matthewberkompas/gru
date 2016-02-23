@@ -2,6 +2,18 @@
 # and its dependencies with the aid of the Mix.Config module.
 use Mix.Config
 
+config :gru,
+  slack_webhook_url: "https://hooks.slack.com/services/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",
+  titles: [
+    "Master",
+    "Supreme Leader",
+    "Grand Exalted One",
+    "Overlord",
+    "Your Magnificence",
+    "My Liege",
+    "Boss Man"
+  ]
+
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this
 # file won't be loaded nor affect the parent project. For this reason,

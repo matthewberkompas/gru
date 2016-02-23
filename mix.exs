@@ -14,7 +14,7 @@ defmodule GRU.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :hackney, :httpoison],
+    [applications: [:logger, :hackney, :httpoison, :poison, :crypto, :cowboy, :plug],
      mod: {GRU, []}]
   end
 
@@ -28,6 +28,9 @@ defmodule GRU.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    [{:httpoison, ">= 0.0.0"}]
+    [{:httpoison, ">= 0.0.0"},
+     {:poison, ">= 0.0.0"},
+     {:cowboy, "~> 1.0.0"},
+     {:plug, "~> 1.0"}]
   end
 end

@@ -1,18 +1,20 @@
 defmodule GRU do
   use Application
 
-  alias GRU.CrawlerMinion, as: Crawler
+  alias GRU.CrawlerSupervisor
 
   # See http://elixir-lang.org/docs/stable/elixir/Application.html
   # for more information on OTP Applications
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
+    HTTPoison.start
+
     children = [
       # Define workers and child supervisors to be supervised
       # worker(Gru.Worker, [arg1, arg2, arg3]),
-      worker(Crawler, ["https://www.humblebundle.com", ["XCOM 2"]], id: :humble),
-      worker(Crawler, ["https://www.apple.com", ["Apple Car"]], id: :apple)
+      supervisor(CrawlerSupervisor, []),
+      Plug.Adapters.Cowboy.child_spec(:http, GRU.Router, [], [port: 4400])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html

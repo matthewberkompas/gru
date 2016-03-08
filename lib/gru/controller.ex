@@ -1,8 +1,8 @@
 defmodule GRU.Controller do
   def command(["minion", "help"]) do
-   """
-   minion crawl <website> for <term>
-   """
+    """
+    minion crawl <website> for <term>
+    """
   end
 
   def command(["minion", "crawl", website, "for", term]) do
